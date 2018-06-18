@@ -21,13 +21,13 @@ pipeline {
             }
         }
 
-/*            stage('Deploy proxy bundle') {
+            stage('Deploy proxy bundle') {
                 steps {
                     dir('forecastweatherapi') {
                     sh "mvn -Ptest -Denv=${params.apigee_env} -Dorg=${params.apigee_org} -Dusername=${params.apigee_user} -Dpassword=${params.apigee_pwd}"
                 }
             }
-        }*/
+        }
 	}
 
 	
