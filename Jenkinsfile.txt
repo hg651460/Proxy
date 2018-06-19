@@ -12,48 +12,9 @@ pipeline {
 	    }
 	}
 		
-           stage('Pre-Deployment Configuration - Caches') {
-                steps {
-                    dir('edge') {
-                    println "Predeployment of Caches "
-                    sh "mvn apigee-config:caches " +
-                            "    -Ptest -Denv=${params.apigee_env} -Dorg=${params.apigee_org} " +
-                            "    -Dusername=${params.apigee_user} " +
-                            "    -Dpassword=${params.apigee_pwd}"
-
-                }
-            }
-        }
-
-           stage('Pre-Deployment Configuration - targetservers') {
-                steps {
-                    dir('edge') {
-                    println "Predeployment of targetservers "
-                    sh "mvn apigee-config:targetservers " +
-                            "    -Ptest -Denv=${params.apigee_env} -Dorg=${params.apigee_org} " +
-                            "    -Dusername=${params.apigee_user} " +
-                            "    -Dpassword=${params.apigee_pwd}"
-
-                }
-            }
-        }
-
-           stage('Pre-Deployment Configuration - keyvaluemaps ') {
-                steps {
-                    dir('edge') {
-                    println "Predeployment of keyvaluemaps  "
-                    sh "mvn apigee-config:keyvaluemaps " +
-                            "    -Ptest -Denv=${params.apigee_env} -Dorg=${params.apigee_org} " +
-                            "    -Dusername=${params.apigee_user} " +
-                            "    -Dpassword=${params.apigee_pwd}"
-
-                }
-            }
-        }
-
             stage('Build proxy bundle') {
                 steps {
-                    dir('edge') {
+                    dir('forecastweatherapi') {
                     sh "mvn package -Ptest -Denv=${params.apigee_env} -Dorg=${params.apigee_org}"
 
                 }
