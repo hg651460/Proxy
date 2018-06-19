@@ -9,7 +9,7 @@ pipeline {
 		dir('forecastweatherapi') {
 		sh "mvn clean"
 		}
-	}
+	    }
 	}
 		
            stage('Pre-Deployment Configuration - Caches') {
@@ -17,7 +17,7 @@ pipeline {
                     dir('edge') {
                     println "Predeployment of Caches "
                     sh "mvn apigee-config:caches " +
-                            "    -Papigee -Denv=${params.apigee_env} -Dorg=${params.apigee_org} " +
+                            "    -Ptest -Denv=${params.apigee_env} -Dorg=${params.apigee_org} " +
                             "    -Dusername=${params.apigee_user} " +
                             "    -Dpassword=${params.apigee_pwd}"
 
@@ -30,7 +30,7 @@ pipeline {
                     dir('edge') {
                     println "Predeployment of targetservers "
                     sh "mvn apigee-config:targetservers " +
-                            "    -Papigee -Denv=${params.apigee_env} -Dorg=${params.apigee_org} " +
+                            "    -Ptest -Denv=${params.apigee_env} -Dorg=${params.apigee_org} " +
                             "    -Dusername=${params.apigee_user} " +
                             "    -Dpassword=${params.apigee_pwd}"
 
@@ -43,7 +43,7 @@ pipeline {
                     dir('edge') {
                     println "Predeployment of keyvaluemaps  "
                     sh "mvn apigee-config:keyvaluemaps " +
-                            "    -Papigee -Denv=${params.apigee_env} -Dorg=${params.apigee_org} " +
+                            "    -Ptest -Denv=${params.apigee_env} -Dorg=${params.apigee_org} " +
                             "    -Dusername=${params.apigee_user} " +
                             "    -Dpassword=${params.apigee_pwd}"
 
